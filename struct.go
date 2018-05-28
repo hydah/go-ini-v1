@@ -256,6 +256,11 @@ func (s *Section) mapTo(val reflect.Value, isStrict bool) error {
 					return fmt.Errorf("error mapping field(%s): %v", fieldName, err)
 				}
 				continue
+			} else {
+				if err = s.mapTo(field, isStrict); err != nil {
+					return fmt.Errorf("err mapping field(%s): %v", fieldName, err)
+				}
+				continue
 			}
 		}
 
